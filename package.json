@@ -9,6 +9,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.0",
+    "create-react-app": "^2.1.1",
     "ejs": "^2.4.1",
     "express": "^4.13.4",
     "mysql": "^2.16.0"
