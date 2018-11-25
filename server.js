@@ -29,6 +29,7 @@ var con = mysql.createConnection({
     database: "coffeeDB"
 });
 
+// Check connection
 con.connect(function(error) {
     if (error) {
         throw error;
@@ -38,6 +39,7 @@ con.connect(function(error) {
 
 // Root route to render the index.ejs view
 app.get('/', function(req, res) {
+    // Query our database
     var query = "SELECT * from users"
     con.query(query, function (error, result) {
         if (error) {
@@ -46,6 +48,8 @@ app.get('/', function(req, res) {
             console.log(result);
         }
     })
+
+    // Render a temporarily front-end using ejs in views file
     res.render("index");
 })
 
