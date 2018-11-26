@@ -53,7 +53,7 @@ app.get('/', function(req, res) {
     res.render("index");
 })
 
-app.post("/customerRegister", function(req, res) {
+app.post("/register", function(req, res) {
     if (req.body.user_type.toLowerCase() == "employee") {
         var user_type = "employee";
         var store_id = req.body.store_id;
@@ -88,7 +88,7 @@ app.post("/customerRegister", function(req, res) {
     })
 })
 
-app.post("/customerLogin", function(req, res) {
+app.post("/login", function(req, res) {
     if (req.body.user_type.toLowerCase() == "employee") {
         var user_type = "employee";
         var store_id = req.body.store_id;
