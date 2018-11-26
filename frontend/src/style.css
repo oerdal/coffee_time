@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700');
+
+.navbar img {
+    height: 64px;
+}
+
+.nav-element {
+    height: 64px;
+    line-height: 250%;
+}
+
+.nav-element:hover {
+    text-decoration: none;
+    background-color: aliceblue;
+}
+
+.clear-link {
+    font-family: 'PT Sans Narrow', 'Segoe UI', Tahoma, Verdana, sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    background-color: rgba(30, 30, 30, 0.7);
+    color: white;
+}
+
+.clear-link:hover {
+    text-decoration: none;
+    background-color: rgba(230, 230, 230, 0.7);
+    color: black;
+}
+
+#customer-panel {
+    background-image: url('./resources/coffee.jpg');
+}
+
+#employee-panel {
+    background-image: url('./resources/barista.jpg');
+}
+
+#customer-panel, #employee-panel {
+    width: 100%;
+    background-size: cover;
+    background-position: right;
+}
+
+#landing-buttons {
+    min-height: inherit;
+}
