@@ -1,4 +1,3 @@
-
 // Used for getting static and view files
 const path = require("path");
 

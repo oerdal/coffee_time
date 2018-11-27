@@ -6,17 +6,13 @@ module.exports = (app, con) => {
         // Query our database
         var query = "SELECT * from users"
         var con = require('../services/connection')
-        con.connect((error) => {
+        con.query(query, (error, results) => {
             if(error){
-                throw error
+                console.log(error)
             }
-            con.query(query, (error, results) => {
-                if(error){
-                    console.log(error)
-                }
-                console.log("Successful query")
-            })
+            console.log("Successful query")
         })
+        
         // Render a temporarily front-end using ejs in views file
         return res.render("index");
     })

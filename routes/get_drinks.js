@@ -22,15 +22,21 @@ module.exports = (app) => {
             return res.send(JSON.stringify({"status": 404, "error": "no user or store ID found"}))
         }
         var con = require('../services/connection')
-        con.connect((error) => {
-            con.query(query, (error, result) => {
-                if(error){
-                    return res.send(JSON.stringify({"status": 404, "response": null, "id": id}))
-                }
-                // if we can successfully query the drink table for the drinks for a given
-                // user or store, return the appropriate response
-                return res.send(JSON.stringify({"status" : 200, "response": result, "id": id}))
-            })
+        con.query(query, (error, result) => {
+            if(error){
+                return res.send(JSON.stringify({"status": 404, "response": null, "id": id}))
+            }
+            // if we can successfully query the drink table for the drinks for a given
+            // user or store, return the appropriate response
+            return res.send(JSON.stringify({"status" : 200, "response": result, "id": id}))
+        })
+        con.query(query, (error, result) => {
+            if(error){
+                return res.send(JSON.stringify({"status": 404, "response": null, "id": id}))
+            }
+            // if we can successfully query the drink table for the drinks for a given
+            // user or store, return the appropriate response
+            return res.send(JSON.stringify({"status" : 200, "response": result, "id": id}))
         })
     })
 }
