@@ -1,18 +1,22 @@
+// include mysql
 const mysql = require('mysql')
-
-module.exports = (app) => {
+module.exports = (app, con) => {
     // Root route to render the index.ejs view
     app.get('/', function(req, res) {
         // Query our database
         var query = "SELECT * from users"
-        con.query(query, function (error, result) {
-            if (error) {
-                return res.json({status: "Error", data: error});
-            } else {
-                console.log(result);
+        var con = require('../services/connection')
+        con.connect((error) => {
+            if(error){
+                throw error
             }
+            con.query(query, (error, results) => {
+                if(error){
+                    console.log(error)
+                }
+                console.log("Successful query")
+            })
         })
-
         // Render a temporarily front-end using ejs in views file
         return res.render("index");
     })

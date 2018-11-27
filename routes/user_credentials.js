@@ -1,5 +1,3 @@
-const mysql = require("mysql");
-
 module.exports = (app) => {
     app.post("/register", function(req, res) {
         if (req.body.user_type.toLowerCase() == "employee") {
@@ -15,6 +13,7 @@ module.exports = (app) => {
         if (req.body.password != req.body.passwordConfirm) {
             return res.json({status: "Error", data: "Password does not match"});
         } 
+        var con = require('../services/connection')
         var query = "SELECT users.username FROM users WHERE users.username = {0} AND users.user_type={1};".format(req.body.username, user_type);
         con.query(query, function(error, user) {
             if (error) {

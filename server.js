@@ -3,18 +3,16 @@ const express = require("express");
 
 // Create the express app
 const app = express();
-
-// create mySQL connection
-const con = require('./services/connection')
+// configure express app settings
+require('./services/config_express')(app, express)
 // include root route handler '/'
 require('./routes/root')(app)
 // include route handlers for registration and login
 require('./routes/user_credentials')(app)
 // include route handler for fetching drinks by
-// store ID, or customesr ID
+// store ID, or customer ID
 require('./routes/get_drinks')(app)
-// configure express app settings
-require('./services/config_express')(app, express)
+
 
 // Listen on host service specified port, if developing
 // locally, will default to port 8000 instead

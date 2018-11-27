@@ -1,14 +1,15 @@
+/*
+ * this file create a mysql connection
+ * object, and exports this object, to execute
+ * queries in other files, simply use
+ * var x = require('../services/connection')
+*/
 const mysql = require('mysql')
-
-module.exports = 
-    mysql.createConnection({
-        host: "localhost",
-        user: "root",
-        password: "root",
-        database: "coffeeDB"
-    }).connect(function(error) {
-        if (error) {
-            throw error;
-    }
-    console.log("Connected to Database!")
+var con = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "root",
+    database: "coffeeDB"
 })
+
+module.exports = con

@@ -1,6 +1,13 @@
+
 // Used for getting static and view files
 const path = require("path");
 
+/*
+ * this file configures a variety of settings
+ * for our express app objec, including the use
+ * of HTTP bodyparser, managing static content,
+ * and setting up ejs
+*/
 module.exports = (app, express) => {
     // Parse the body of the HTTP request
     const bodyParser = require('body-parser');
