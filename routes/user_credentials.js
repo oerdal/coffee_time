@@ -1,3 +1,5 @@
+const passport = require('passport')
+
 module.exports = (app) => {
     app.post("/register", function(req, res) {
         if (req.body.user_type.toLowerCase() == "employee") {
@@ -70,4 +72,15 @@ module.exports = (app) => {
             }
         })
     })
+
+    // route handler for google OAuth authorization
+    app.get('/auth/google', passport.authenticate('google', {
+        // specifies access to profile information of
+        // user that we ask for, email + prpfile in this case
+        scope: ['profile', 'email']
+        })
+    )
+
+    // callback route handler for google OAuth authorization
+    app.get('/auth/google/callback', passport.authenticate('google'))
 }
