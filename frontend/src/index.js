@@ -1,19 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+
 import './style.css';
 
-import NavBar from './components/nav-bar';
-import Login from './components/login';
+import reducers from './reducers';
+import DrinkList from './containers/drink_list';
 
 class App extends React.Component {
     render() {
         return (
             <div>
-                <NavBar />
-                <Login />
+                <DrinkList />
             </div>
         );
     }
 }
 
-ReactDOM.render(<App />, document.querySelector('#root'));
+const createStoreWithMiddleware = applyMiddleware()(createStore);
+
+ReactDOM.render(
+    <Provider store={createStoreWithMiddleware(reducers)}>
+        <App />
+    </Provider>
+    , document.querySelector('#root'));
