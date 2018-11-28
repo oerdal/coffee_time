@@ -1,59 +1,23 @@
 // Require express
-var express = require("express");
-
+const express = require("express");
+// include passportConfig, will be used for OAuth, specifically
+// using the passport.js OAuth library
+const passportConfig = require('./services/passport')
 // Create the express app
-var app = express();
+const app = express();
+// configure express app settings
+require('./services/config_express')(app, express)
+// include root route handler '/'
+require('./routes/root')(app)
+// include route handlers for registration and login
+require('./routes/user_credentials')(app)
+// include route handler for fetching drinks by
+// store ID, or customer ID
+require('./routes/get_drinks')(app)
 
-// Used for getting static and view files
-var path = require("path");
-
-// Parse the body of the HTTP request
-var bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: true }));
-
-// Setting up static content
-app.use(express.static(path.join(__dirname, "./static")));
-
-// Setting up ejs and our views folder
-app.set('views', path.join(__dirname, './views'));
-app.set('view engine', 'ejs');
-
-// Require MySQL
-var mysql = require("mysql");
-
-// Create the connection
-var con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "root",
-    database: "coffeeDB"
-});
-
-// Check connection
-con.connect(function(error) {
-    if (error) {
-        throw error;
-    }
-    console.log("Connected to Database!")
-})
-
-// Root route to render the index.ejs view
-app.get('/', function(req, res) {
-    // Query our database
-    var query = "SELECT * from users"
-    con.query(query, function (error, result) {
-        if (error) {
-            throw error;
-        } else {
-            console.log(result);
-        }
-    })
-
-    // Render a temporarily front-end using ejs in views file
-    res.render("index");
-})
-
-// Listen on port 8000
-app.listen(8000, function() {
-    console.log("listening on port 8000");
+// Listen on host service specified port, if developing
+// locally, will default to port 8000 instead
+const PORT = process.env.PORT || 5000
+app.listen(PORT, function() {
+    console.log("listening on port ", PORT);
 });
