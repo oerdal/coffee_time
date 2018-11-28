@@ -8,5 +8,31 @@
 </head>
 <body>
     <h1>Coffee Time</h1>
+    <form action='/register' method='POST'>
+        <h2>Register</h2>
+        Email:<input type='text' name='email'>
+        Name: <input type='text' name='name'>
+        Username:<input type='text' name='username'>
+        Password:<input type='password' name='password'>
+        Confirm Password:<input type='password' name='passwordConfirm'>
+        User type:
+        <select name='user_type'>
+            <option>Employee</option>
+            <option>Customer</option>
+        </select>
+        <input type='submit' value='Register'>
+    </form>
+
+    <form action='/login' method='POST'>
+        <h2>Login</h2>
+        Username:<input type='text' name='username'>
+        Password:<input type='password' name='password'>
+        User type:
+        <select name='user_type'>
+            <option>Employee</option>
+            <option>Customer</option>
+        </select>
+        <input type='submit' value='Login'>
+    </form>
 </body>
 </html>

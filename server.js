@@ -17,7 +17,7 @@ require('./routes/get_drinks')(app)
 
 // Listen on host service specified port, if developing
 // locally, will default to port 8000 instead
-const PORT = process.env.PORT || 8000
+const PORT = process.env.PORT || 5000
 app.listen(PORT, function() {
     console.log("listening on port ", PORT);
 });
