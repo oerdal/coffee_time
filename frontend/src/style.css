@@ -1,31 +1,40 @@
-@import url('https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700');
+@import url('https://fonts.googleapis.com/css?family=Cormorant+Upright:300,500,700');
+
+body {
+    font-family: 'Cormorant Upright', serif;
+    background-color: #FFFAF0;
+}
 
 .drink img {
-    width: 256px;
+    width: 180px;
+}
+
+.drink p {
+    line-height: 0.8em;
 }
 
 .drink {
+    flex-basis: 40%;
 }
 
 .navbar img {
-    height: 64px;
+    height: 36px;
 }
 
-.nav-element {
-    height: 64px;
-    line-height: 250%;
+.nav-link {
+    font-weight: 500;
+    font-size: 20px;
 }
 
-.nav-element:hover {
+.nav-link:hover, #login button:hover {
     text-decoration: none;
-    background-color: aliceblue;
+    font-weight: 700;
 }
 
 .clear-link {
-    font-family: 'PT Sans Narrow', 'Segoe UI', Tahoma, Verdana, sans-serif;
     font-size: 24px;
     font-weight: 400;
-    background-color: rgba(30, 30, 30, 0.7);
+    background-color: rgba(130, 130, 130, 0.7);
     color: white;
 }
 
@@ -51,4 +60,9 @@
 
 #landing-buttons {
     min-height: inherit;
+}
+
+#team img {
+    height: 164px;
+    width: 164px;
 }
