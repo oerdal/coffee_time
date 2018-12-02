@@ -1,5 +1,7 @@
 // Require express
 const express = require("express");
+// Require passport
+const passport = require('passport')
 // include passportConfig, will be used for OAuth, specifically
 // using the passport.js OAuth library
 const passportConfig = require('./services/passport')
@@ -15,6 +17,9 @@ require('./routes/user_credentials')(app)
 // store ID, or customer ID
 require('./routes/get_drinks')(app)
 
+
+app.use(passport.initialize())
+app.use(passport.session())
 // Listen on host service specified port, if developing
 // locally, will default to port 8000 instead
 const PORT = process.env.PORT || 5000
