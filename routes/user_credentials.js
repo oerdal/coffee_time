@@ -47,6 +47,7 @@ module.exports = (app) => {
             }
         })
     })
+    
     app.post("/login", function(req, res) {
         if (req.body.user_type.toLowerCase() == "employee") {
             var user_type = "employee";
@@ -95,12 +96,12 @@ module.exports = (app) => {
     // callback route handler for google OAuth authorization
     app.get('/auth/google/callback', passport.authenticate('google'))
 
-    app.get('/api/current_user', (req, res) => {
+    /*app.get('/api/current_user', (req, res) => {
         res.send(req.user)
     })
 
     app.get('/api/logout', (req, res) => {
         // remove user cookie
         req.logout()
-    })
+    })*/
 }

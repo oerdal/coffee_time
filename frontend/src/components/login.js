@@ -15,6 +15,7 @@ const Login = () => {
                     </div>
                     <button className="btn btn-link btn-outline-dark p-2 text-danger mx-auto" type="submit">Login</button>
                 </form>
+                <a href="/auth/google">login using google</a>
             </div>
             <div className="container d-flex justify-content-around my-3 p-3" id="other-login">
                 <button className="btn btn-link btn-outline-dark text-danger p-2">Create Account</button>
