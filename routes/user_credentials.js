@@ -1,4 +1,5 @@
 const passport = require('passport')
+const bcrypt = require('bcrypt');
 
 String.prototype.format = function() {
     a = this;
@@ -34,7 +35,9 @@ module.exports = (app) => {
                 if (user.length != 0) {
                     return res.json({status: "Error", data: "Username already exists in the database" });
                 } else {
-                    var successQuery = "INSERT INTO coffeeDB.users (name, user_name, password, created_at, updated_at, user_type, store_id) VALUES ('{0}', '{1}', '{2}', {3}, {4}, '{5}', {6});".format(req.body.name, req.body.username, req.body.password, "NOW()", "NOW()", user_type, store_id);
+                    
+                    let hash = bcrypt.hashSync(req.body.password, 10);
+                    var successQuery = "INSERT INTO coffeeDB.users (name, user_name, password, created_at, updated_at, user_type, store_id) VALUES ('{0}', '{1}', '{2}', {3}, {4}, '{5}', {6});".format(req.body.name, req.body.username, hash, "NOW()", "NOW()", user_type, store_id);
                     con.query(successQuery, function (error, result) {
                         if (error) {
                             return res.json({status: "Error", data: error});
@@ -68,18 +71,11 @@ module.exports = (app) => {
                 if (result.length == 0) {
                     return res.json({status: "Error", data: "Username does not exist in the database" });
                 } else {
-                    var passwordQuery = "SELECT * FROM users WHERE users.user_name='{0}' AND users.password='{1}' AND users.user_type='{2}'".format(req.body.username, req.body.password, user_type);
-                    con.query(passwordQuery, function(error, result) {
-                        if (error) {
-                            return res.json({status: "Error", data: error});
-                        } else {
-                            if (result.length == 0) {
-                                return res.json({status: "Error", data: "Username and Password does not match"});
-                            } else {
-                                return res.json({status: "Success", data: result})
-                            }
-                        }
-                    })
+                    if(bcrypt.compareSync(req.body.password, result[0].password)) {
+                        return res.json({status: "Success", data: result})
+                       } else {
+                        return res.json({status: "Error", data: "Username and Password does not match"});
+                    }
                 }
             }
         })
